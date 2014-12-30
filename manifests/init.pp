@@ -29,13 +29,24 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Sebastian Reitenbach <sebastia@l00-bugdead-prods.de>
 #
 # === Copyright
 #
-# Copyright 2014 Your name here, unless otherwise noted.
+# Copyright 2014 Sebastian Reitenbach, unless otherwise noted.
 #
 class accounts {
 
+  $vgroups = hiera_hash('accounts::virtual::groups')
+  $vusers  = hiera_hash('accounts::virtual::users')
+  $vuser_defaults = hiera_hash('accounts::virtual::userdefaults')
+  $vgroup_defaults = hiera_hash('accounts::virtual::groupdefaults')
+  create_resources('@group', $vgroups, $vgroup_defaults)
+  create_resources('@user', $vusers, $vuser_defaults)
 
+  $groups = hiera_array('accounts::groups')
+  $users = hiera_array('accounts::users')
+
+  realize(Group[$groups])
+  realize(User[$users])
 }
