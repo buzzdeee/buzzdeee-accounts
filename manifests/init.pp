@@ -37,16 +37,20 @@
 #
 class accounts {
 
-  $vgroups = hiera_hash('accounts::virtual::groups')
-  $vusers  = hiera_hash('accounts::virtual::users')
+  $vgroups  = hiera_hash('accounts::virtual::groups')
+  $vusers   = hiera_hash('accounts::virtual::users')
+  $vsshkeys = hiera_hash('accounts::virtual::sshkeys')
   $vuser_defaults = hiera_hash('accounts::virtual::userdefaults')
   $vgroup_defaults = hiera_hash('accounts::virtual::groupdefaults')
   create_resources('@group', $vgroups, $vgroup_defaults)
   create_resources('@user', $vusers, $vuser_defaults)
+  create_resources('@ssh_authorized_key', $vsshkeys)
 
-  $groups = hiera_array('accounts::groups')
-  $users = hiera_array('accounts::users')
+  $groups  = hiera_array('accounts::groups')
+  $users   = hiera_array('accounts::users')
+  $sshkeys = hiera_array('accounts::sshkeys')
 
   realize(Group[$groups])
   realize(User[$users])
+  realize(Ssh_authorized_key[$sshkeys])
 }
