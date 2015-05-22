@@ -37,10 +37,11 @@
 #
 class accounts {
 
-  $vgroups  = hiera_hash('accounts::virtual::groups')
-  $vusers   = hiera_hash('accounts::virtual::users')
-  $vsshkeys = hiera_hash('accounts::virtual::sshkeys')
-  $vuser_defaults = hiera_hash('accounts::virtual::userdefaults')
+  $vgroups         = hiera_hash('accounts::virtual::groups')
+  $vusers          = hiera_hash('accounts::virtual::users')
+  $vsshkeys        = hiera_hash('accounts::virtual::sshkeys')
+  $vsshprivkeys    = hiera_hash('accounts::virtual::sshprivkeys')
+  $vuser_defaults  = hiera_hash('accounts::virtual::userdefaults')
   $vgroup_defaults = hiera_hash('accounts::virtual::groupdefaults')
   create_resources('@group', $vgroups, $vgroup_defaults)
   create_resources('@user', $vusers, $vuser_defaults)
