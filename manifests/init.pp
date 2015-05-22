@@ -56,5 +56,5 @@ class accounts {
   realize(Group[$groups])
   realize(User[$users])
   realize(Ssh_authorized_key[$sshkeys])
-  realize(accounts::ssh_priv_key[$sshprivkeys])
+  realize(Accounts::Ssh_priv_key[$sshprivkeys])
 }
