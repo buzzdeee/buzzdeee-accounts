@@ -4,7 +4,8 @@ define accounts::ssh_priv_key (
   $homedir,
   $key,
 ) {
-  file { "${homedir}/.ssh": {
+
+  file { "${homedir}/.ssh":
     ensure => 'directory',
     owner  => $user,
     group  => $group,
