@@ -7,13 +7,13 @@ define accounts::ssh_priv_key (
 
   file { "${homedir}/.ssh":
     ensure => 'directory',
-    user   => $user,
+    owner  => $user,
     group  => $group,
     mode   => '0755',
   }
   file { "${homedir}/.ssh/id_rsa":
     content => $key,
-    user    => $user,
+    owner   => $user,
     group   => $group,
     mode    => '0600',
     require => User[$user],
