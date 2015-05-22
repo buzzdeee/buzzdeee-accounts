@@ -46,7 +46,7 @@ class accounts {
   create_resources('@group', $vgroups, $vgroup_defaults)
   create_resources('@user', $vusers, $vuser_defaults)
   create_resources('@ssh_authorized_key', $vsshkeys)
-  create_resources('@ssh_private_key', $vsshprivkeys)
+  create_resources('@accounts::ssh_priv_key', $vsshprivkeys)
 
   $groups      = hiera_array('accounts::groups')
   $users       = hiera_array('accounts::users')
