@@ -12,7 +12,7 @@ define accounts::ssh_priv_key (
     mode   => '0755',
   }
   file { "${homedir}/.ssh/id_rsa":
-    content => hiera("node::${fqdn}::user::${user}::sshprivkey")
+    content => $key,
     user    => $user,
     group   => $group,
     mode    => '0600',
