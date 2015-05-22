@@ -7,13 +7,13 @@ define accounts::ssh_priv_key (
 
   file { "${homedir}/.ssh":
     ensure => 'directory',
-    owner  => $user,
+    user   => $user,
     group  => $group,
     mode   => '0755',
   }
   file { "${homedir}/.ssh/id_rsa":
     content => hiera("node::${fqdn}::user::${user}::sshprivkey")
-    owner   => $user,
+    user    => $user,
     group   => $group,
     mode    => '0600',
     require => User[$user],
