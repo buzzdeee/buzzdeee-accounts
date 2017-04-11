@@ -1,3 +1,5 @@
+# This defined type takes care
+# to maintain private keys of managed users
 define accounts::ssh_priv_key (
   $user,
   $group,
@@ -17,5 +19,5 @@ define accounts::ssh_priv_key (
     group   => $group,
     mode    => '0600',
     require => User[$user],
-  } 
+  }
 }
