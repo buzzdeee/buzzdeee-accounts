@@ -37,21 +37,21 @@
 #
 class accounts {
 
-  $vgroups         = hiera_hash('accounts::virtual::groups')
-  $vusers          = hiera_hash('accounts::virtual::users')
-  $vsshkeys        = hiera_hash('accounts::virtual::sshkeys')
-  $vsshprivkeys    = hiera_hash('accounts::virtual::sshprivkeys')
-  $vuser_defaults  = hiera_hash('accounts::virtual::userdefaults')
-  $vgroup_defaults = hiera_hash('accounts::virtual::groupdefaults')
+  $vgroups         = lookup('accounts::virtual::groups', Hash, 'deep', undef)
+  $vusers          = lookup('accounts::virtual::users', Hash, 'deep', undef)
+  $vsshkeys        = lookup('accounts::virtual::sshkeys', Hash, 'deep', undef)
+  $vsshprivkeys    = lookup('accounts::virtual::sshprivkeys', Hash, 'deep', undef)
+  $vuser_defaults  = lookup('accounts::virtual::userdefaults', Hash, 'deep', undef)
+  $vgroup_defaults = lookup('accounts::virtual::groupdefaults', Hash, 'deep', undef)
   create_resources('@group', $vgroups, $vgroup_defaults)
   create_resources('@user', $vusers, $vuser_defaults)
   create_resources('@ssh_authorized_key', $vsshkeys)
   create_resources('@accounts::ssh_priv_key', $vsshprivkeys)
 
-  $groups      = hiera_array('accounts::groups')
-  $users       = hiera_array('accounts::users')
-  $sshkeys     = hiera_array('accounts::sshkeys')
-  $sshprivkeys = hiera_array('accounts::sshprivkeys')
+  $groups      = lookup('accounts::groups', Array, 'unique', undef)
+  $users       = lookup('accounts::users', Array, 'unique', undef)
+  $sshkeys     = lookup('accounts::sshkeys', Array, 'unique', undef)
+  $sshprivkeys = lookup('accounts::sshprivkeys', Array, 'unique', undef)
 
   realize(Group[$groups])
   realize(User[$users])
