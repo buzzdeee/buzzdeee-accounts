@@ -31,7 +31,7 @@ rake-test:
 
 deploy:
   script:
-    - "sudo /usr/local/bin/r10k${RUBYSUFFIX} deploy module newsyslog -v"
+    - "sudo /usr/local/bin/r10k${RUBYSUFFIX} deploy module accounts -v"
   stage: deploy
   only:
     - master
